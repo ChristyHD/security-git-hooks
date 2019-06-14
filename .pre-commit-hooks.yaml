@@ -9,3 +9,4 @@
     description: 'Check file content for potential secrets'
     language: python
     entry: secrets_filecontent
+
