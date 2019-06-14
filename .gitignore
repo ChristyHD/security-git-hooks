@@ -1,4 +1,3 @@
-.pre-commit-config.yaml
 logs
 project/project
 project/target
