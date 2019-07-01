@@ -25,7 +25,7 @@ def check_release_version_from_config(pre_commit_config_yaml):
 def check_release_version_from_remote_repo():
     try:
         req = requests.get(
-            "https://api.github.com/repos/hmrc/security-git-hooks/releases/latest"
+            "https://api.github.com/repos/hmrc/professional-subscriptions-frontend/releases/latest"
         )
         content = req.json()
         return content["tag_name"]
