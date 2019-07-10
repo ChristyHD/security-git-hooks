@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-
+import time
+start = time.time()
 import argparse
 import re
 import yaml
@@ -38,6 +39,8 @@ def main(argv=None):
                             )
                         )
                 exit_code = 1
+    end = time.time()  
+    print(end - start)
     return exit_code
 
 if __name__ == "__main__":
