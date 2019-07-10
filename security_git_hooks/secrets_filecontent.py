@@ -1,16 +1,22 @@
 #!/usr/bin/env python3
 import time
+
 start = time.time()
+
 import argparse
+import sys
 import re
 import yaml
-from . import conf
-#import conf
 
-RULES = {}
+#from . import conf
+import conf
 
-for key, value in yaml.safe_load(conf.CONF_YAML)["FILE_CONTENT_REGEXES"].items():
-    RULES[value] = key
+
+def detect_secret_in_line(line_to_check):
+    """compiles regex and checks against line."""
+    for rule, regex in yaml.safe_load(conf.CONF_YAML)["FILE_CONTENT_REGEXES"].items():
+        if re.search(regex, line_to_check):
+            yield rule
 
 
 def main(argv=None):
@@ -30,18 +36,18 @@ def main(argv=None):
                 if flag:
                     flag = False
                     continue
-                for regex, rule in RULES.items():
-                    if re.findall(regex, line):
-                        print(
-                            "Potentially sensitive string matching rule: {rule} found at line {line_number} of {file}".format(
-                                rule=rule, line_number=i + 1, file=filename
-                            
-                            )
+                rule = detect_secret_in_line(line)
+                if rule:
+                    print(
+                        "Potentially sensitive string found on line {line_number} of {file}".format(
+                            line_number=i + 1, file=filename
                         )
-                exit_code = 1
-    end = time.time()  
+                    )
+                    exit_code = 1
+    end = time.time()
     print(end - start)
     return exit_code
+
 
 if __name__ == "__main__":
     exit(main())
