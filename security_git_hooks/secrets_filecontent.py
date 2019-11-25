@@ -3,13 +3,14 @@ import argparse
 import re
 import yaml
 
-from .. import conf
+from . import conf
 
 # import conf
 
 PRIVATE_RULES = yaml.safe_load(conf.CONF_YAML)["PRIVATE_RULES"]
 
 PUBLIC_RULES = yaml.safe_load(conf.CONF_YAML)["PUBLIC_RULES"]
+
 
 def repository_yaml_check():
     for filename in args.filenames:
@@ -21,7 +22,9 @@ def repository_yaml_check():
                     elif re.search(CONF.REPOSITORY_YAML_CONTENT[private]):
                         return PRIVATE_RULES
                     else:
-                        print("No repository,yaml file found, checking against all rules")
+                        print(
+                            "No repository,yaml file found, checking against all rules"
+                        )
                         return PRIVATE_RULES, PUBLIC_RULES
 
 
