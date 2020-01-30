@@ -1,0 +1,23 @@
+-   id: secrets_filename
+    name: Check filenames for potential secrets
+    description: 'Check filenames for potential secrets'
+    language: python
+    entry: security-git-hooks-filecontent
+
+-   id: secrets_filecontent
+    name: Check file content for potential secrets
+    description: 'Check file content for potential secrets'
+    language: python
+    entry: security-git-hooks-filename
+    
+-   id: repository_check
+    name: Check local hooks release against latest
+    description: 'Check local hooks release against latest'
+    language: python
+    entry: security-git-hooks-repository-check
+
+-   id: hooks_version_check
+    name: Check repository.yaml
+    description: 'Check repository.yaml'
+    language: python
+    entry: security-git-hooks-version-check
