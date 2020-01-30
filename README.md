@@ -1,3 +1,4 @@
+
 # security-git-hooks
 
 The purpose of these pre-commit Git hooks is to check file types and content against pre-defined rules in order to identify potentially sensitive information prior to commit. Managing sensitive content before it is committed to GitHub helps maintain our overall security posture, and also helps prevent the Leak Detection Service (LDS) triggering an alert, thus reducing the potential for secrets requiring manual removal from Git histories and for keys which would then require cycling.  
